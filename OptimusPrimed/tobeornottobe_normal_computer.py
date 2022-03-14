@@ -39,7 +39,7 @@ from random import sample
 import pandas as pd
 #Import local scripts
 import ppc
-from triggers import setParallelData
+#from triggers import setParallelData
 import random
 
 
@@ -219,14 +219,14 @@ def make_trial_list():
 def circle_frame(spot, window): 
     if spot == 1:
         col_frame = visual.Rect(window, size = 10000, lineWidth=1.5, fillColor='Navy')
-        black_frame = visual.Rect(window,width=28.0, height=16.2, units='deg', lineWidth=1.5, lineColor=None, lineColorSpace=None, fillColor='Gray', fillColorSpace=None, pos=(0, 0))
+        black_frame = visual.Rect(window,width=22.0, height=13.9, units='deg', lineWidth=1.5, lineColor=None, lineColorSpace=None, fillColor='Gray', fillColorSpace=None, pos=(0, 0))
         left_circle = visual.Circle(window, radius=0.06, units = 'deg', edges=50, lineWidth=1.5, fillColor='Navy', pos=(-7.5,4), fillColorSpace=None,  size=20, lineColor = None)
         right_circle = visual.Circle(window, radius=0.06, units = 'deg', edges=50, lineWidth=1.5, fillColor='DarkRed', pos=(7.5,4), fillColorSpace=None,  size=20, lineColor = None)
         right_circle.win = window
         left_circle.win = window
     else:
         col_frame = visual.Rect(window, size = 10000, lineWidth=1.5, fillColor='DarkRed')
-        black_frame = visual.Rect(window,width=28.0, height=16.2, units='deg', lineWidth=1.5, lineColor=None, lineColorSpace=None, fillColor='Gray', fillColorSpace=None, pos=(0, 0))
+        black_frame = visual.Rect(window,width=22.0, height=13.9, units='deg', lineWidth=1.5, lineColor=None, lineColorSpace=None, fillColor='Gray', fillColorSpace=None, pos=(0, 0))
         left_circle = visual.Circle(window, radius=0.06, units = 'deg', edges=50, lineWidth=1.5, fillColor='Navy', pos=(-7.5,4), fillColorSpace=None,  size=20, lineColor = None)
         right_circle = visual.Circle(window, radius=0.06, units = 'deg', edges=50, lineWidth=1.5, fillColor='DarkRed', pos=(7.5,4), fillColorSpace=None,  size=20, lineColor = None)
         right_circle.win = window
@@ -262,11 +262,11 @@ def run_condition(exp_start):
             stim_prime.draw()
             #stimDot.draw()
             if frame==1:
-                win.callOnFlip(setParallelData, trial['prime_trigger'])  # pull trigger up
+                #win.callOnFlip(setParallelData, trial['prime_trigger'])  # pull trigger up
                 pullTriggerDown = True
             win.flip()
             if pullTriggerDown:
-                win.callOnFlip(setParallelData, 0)
+                #win.callOnFlip(setParallelData, 0)
                 pullTriggerDown = False
         
         # Display fixation cross
@@ -277,13 +277,13 @@ def run_condition(exp_start):
             # Send pause trigger 1 sec (500 ms?) after offset
             #if frame  == 60:
             if frame  == 30:
-                win.callOnFlip(setParallelData, trial['pause_trigger'])  # pull trigger up
+                #win.callOnFlip(setParallelData, trial['pause_trigger'])  # pull trigger up
                 pullTriggerDown = True
                 pause_trigger_t = core.monotonicClock.getTime()  # offset of stimulus
             win.flip()
 
             if pullTriggerDown:
-                win.callOnFlip(setParallelData, 0)
+                #win.callOnFlip(setParallelData, 0)
                 pullTriggerDown = False
 
         # Prepare task
@@ -301,7 +301,7 @@ def run_condition(exp_start):
             stim_task[3].draw()
             
             if frame==1:
-                win.callOnFlip(setParallelData, trial['task_trigger'])  # pull trigger up
+                #win.callOnFlip(setParallelData, trial['task_trigger'])  # pull trigger up
                 pullTriggerDown = True
             if frame>1 and no_key_yet == 0:
                 try:
@@ -316,7 +316,7 @@ def run_condition(exp_start):
                     if (trial['prime_trigger']==11 or trial['prime_trigger']==13):
 #                        if trial['task']==1:
                         trial['correct_resp'] = 1
-                        win.callOnFlip(setParallelData, 111)  # pull trigger up; 100 = correct; X1X = left prime; XX1 left-response
+                        #win.callOnFlip(setParallelData, 111)  # pull trigger up; 100 = correct; X1X = left prime; XX1 left-response
                         pullTriggerDown = True
 #                        elif trial['task']==2:
 #                            trial['correct_resp'] = 0
@@ -325,15 +325,15 @@ def run_condition(exp_start):
                     else: # no prime or right/red prime before
                         if trial['task_type']==1:
                             trial['correct_resp'] = 1
-                            win.callOnFlip(setParallelData, 131)  # pull trigger up; 100 = correct; X3X = no prime; XX1 left-response
+                            #win.callOnFlip(setParallelData, 131)  # pull trigger up; 100 = correct; X3X = no prime; XX1 left-response
                             pullTriggerDown = True
                         elif (trial['task_type']==2 and trial['prime_trigger'] != 15):
                             trial['correct_resp'] = 0
-                            win.callOnFlip(setParallelData, 221)  # pull trigger up; 200 = incorrect; X2X = right prime; XX1 left-response
+                            #win.callOnFlip(setParallelData, 221)  # pull trigger up; 200 = incorrect; X2X = right prime; XX1 left-response
                             pullTriggerDown = True
                         elif (trial['task_type']==2 and trial['prime_trigger'] == 15):
                             trial['correct_resp'] = 0
-                            win.callOnFlip(setParallelData, 231)  # pull trigger up; 200 = incorrect; X3X = no prime; XX1 left-response
+                            #win.callOnFlip(setParallelData, 231)  # pull trigger up; 200 = incorrect; X3X = no prime; XX1 left-response
                             pullTriggerDown = True
                 elif key in KEYS_target['right']:
                     no_key_yet = 1
@@ -343,7 +343,7 @@ def run_condition(exp_start):
                     if (trial['prime_trigger']==12 or trial['prime_trigger']==14):
 #                        if trial['task']==2:
                         trial['correct_resp'] = 1
-                        win.callOnFlip(setParallelData, 122)  # pull trigger up; 100 = correct; X2X = right prime; XX2 right-response
+                        #win.callOnFlip(setParallelData, 122)  # pull trigger up; 100 = correct; X2X = right prime; XX2 right-response
                         pullTriggerDown = True
 #                        elif trial['task']==1:
 #                            trial['correct_resp'] = 0
@@ -352,15 +352,15 @@ def run_condition(exp_start):
                     else: # no prime or left/blue prime before
                         if trial['task_type']==2:
                             trial['correct_resp'] = 1
-                            win.callOnFlip(setParallelData, 132)  # pull trigger up; 100 = correct; X3X = no prime XX2 right-response
+                            #win.callOnFlip(setParallelData, 132)  # pull trigger up; 100 = correct; X3X = no prime XX2 right-response
                             pullTriggerDown = True
                         elif (trial['task_type']==1 and trial['prime_trigger'] != 15):
                             trial['correct_resp'] = 0
-                            win.callOnFlip(setParallelData, 212)  # pull trigger up; 200 = incorrect; X1X = left prime; XX2 right-response
+                            #win.callOnFlip(setParallelData, 212)  # pull trigger up; 200 = incorrect; X1X = left prime; XX2 right-response
                             pullTriggerDown = True
                         elif (trial['task_type']==1 and trial['prime_trigger'] == 15):
                             trial['correct_resp'] = 0
-                            win.callOnFlip(setParallelData, 232)  # pull trigger up; 200 = incorrect; X3X = no prime; XX2 right-response
+                            #win.callOnFlip(setParallelData, 232)  # pull trigger up; 200 = incorrect; X3X = no prime; XX2 right-response
                             pullTriggerDown = True
                 if key in KEYS_QUIT:  # Look at first reponse [0]. Quit everything if quit-key was pressed
     #                writer.flush()
@@ -369,7 +369,7 @@ def run_condition(exp_start):
                     core.quit()
             win.flip()
             if pullTriggerDown:
-                win.callOnFlip(setParallelData, 0)
+                #win.callOnFlip(setParallelData, 0)
                 pullTriggerDown = False
 
         # Display fixation cross
@@ -394,7 +394,7 @@ def run_condition(exp_start):
                     if (trial['prime_trigger']==11 or trial['prime_trigger']==13):
 #                        if trial['task']==1:
                         trial['correct_resp'] = 1
-                        win.callOnFlip(setParallelData, 111)  # pull trigger up; 100 = correct; X1X = left prime; XX1 left-response
+                        #win.callOnFlip(setParallelData, 111)  # pull trigger up; 100 = correct; X1X = left prime; XX1 left-response
                         pullTriggerDown = True
 #                        elif trial['task']==2:
 #                            trial['correct_resp'] = 0
@@ -403,15 +403,15 @@ def run_condition(exp_start):
                     else: # no prime or right/red prime before
                         if trial['task_type']==1:
                             trial['correct_resp'] = 1
-                            win.callOnFlip(setParallelData, 131)  # pull trigger up; 100 = correct; X3X = no prime; XX1 left-response
+                            #win.callOnFlip(setParallelData, 131)  # pull trigger up; 100 = correct; X3X = no prime; XX1 left-response
                             pullTriggerDown = True
                         elif (trial['task_type']==2 and trial['prime_trigger'] != 15):
                             trial['correct_resp'] = 0
-                            win.callOnFlip(setParallelData, 221)  # pull trigger up; 200 = incorrect; X2X = right prime; XX1 left-response
+                            #win.callOnFlip(setParallelData, 221)  # pull trigger up; 200 = incorrect; X2X = right prime; XX1 left-response
                             pullTriggerDown = True
                         elif (trial['task_type']==2 and trial['prime_trigger'] == 15):
                             trial['correct_resp'] = 0
-                            win.callOnFlip(setParallelData, 231)  # pull trigger up; 200 = incorrect; X3X = no prime; XX1 left-response
+                            #win.callOnFlip(setParallelData, 231)  # pull trigger up; 200 = incorrect; X3X = no prime; XX1 left-response
                             pullTriggerDown = True
                 elif key in KEYS_target['right']:
                     no_key_yet = 1
@@ -421,7 +421,7 @@ def run_condition(exp_start):
                     if (trial['prime_trigger']==12 or trial['prime_trigger']==14):
 #                        if trial['task']==2:
                         trial['correct_resp'] = 1
-                        win.callOnFlip(setParallelData, 122)  # pull trigger up; 100 = correct; X2X = right prime; XX2 right-response
+                        #win.callOnFlip(setParallelData, 122)  # pull trigger up; 100 = correct; X2X = right prime; XX2 right-response
                         pullTriggerDown = True
 #                        elif trial['task']==1:
 #                            trial['correct_resp'] = 0
@@ -430,15 +430,15 @@ def run_condition(exp_start):
                     else: # no prime or left/blue prime before
                         if trial['task_type']==2:
                             trial['correct_resp'] = 1
-                            win.callOnFlip(setParallelData, 132)  # pull trigger up; 100 = correct; X3X = no prime XX2 right-response
+                            #win.callOnFlip(setParallelData, 132)  # pull trigger up; 100 = correct; X3X = no prime XX2 right-response
                             pullTriggerDown = True
                         elif (trial['task_type']==1 and trial['prime_trigger'] != 15):
                             trial['correct_resp'] = 0
-                            win.callOnFlip(setParallelData, 212)  # pull trigger up; 200 = incorrect; X1X = left prime; XX2 right-response
+                            #win.callOnFlip(setParallelData, 212)  # pull trigger up; 200 = incorrect; X1X = left prime; XX2 right-response
                             pullTriggerDown = True
                         elif (trial['task_type']==1 and trial['prime_trigger'] == 15):
                             trial['correct_resp'] = 0
-                            win.callOnFlip(setParallelData, 232)  # pull trigger up; 200 = incorrect; X3X = no prime; XX2 right-response
+                            #win.callOnFlip(setParallelData, 232)  # pull trigger up; 200 = incorrect; X3X = no prime; XX2 right-response
                             pullTriggerDown = True
                 if key in KEYS_QUIT:  # Look at first reponse [0]. Quit everything if quit-key was pressed
         #                writer.flush()
@@ -447,7 +447,7 @@ def run_condition(exp_start):
                     core.quit()
             win.flip()
             if pullTriggerDown:
-                win.callOnFlip(setParallelData, 0)
+                #win.callOnFlip(setParallelData, 0)
                 pullTriggerDown = False
             # Get actual duration at offset
 

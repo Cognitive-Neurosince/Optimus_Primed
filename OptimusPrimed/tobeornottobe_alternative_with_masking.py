@@ -78,6 +78,8 @@ win = visual.Window(monitor=my_monitor, units='deg', fullscr=True, allowGUI=Fals
 
 #Prepare Fixation cross
 stim_fix = visual.TextStim(win, '+')#, height=FIX_HEIGHT)  # Fixation cross is just the character "+". Units are inherited from Window when not explicitly specified.
+myGrat1 = visual.GratingStim(win, pos=(-7.5,4), units = 'deg', tex='sin', mask='circle', size = 2, sf = 3)
+myGrat2 = visual.GratingStim(win, pos=(7.5,4), units = 'deg', tex='sin', mask='circle', size = 2, sf = 3)
 
 """
 STIMULI
@@ -96,10 +98,10 @@ def prime_func(string, window):
         prime = visual.TextStim(window, '+', color='DarkRed', bold = True)
         prime.win = window
     elif string == 'left':
-        prime = visual.Circle(window, radius=0.06, units = 'deg', edges=50, lineWidth=1.5, fillColor = '#727272', pos=(-7.5,4), fillColorSpace=None,  size=5, lineColor = None)
+        prime = visual.Circle(window, radius=0.06, units = 'deg', edges=50, lineWidth=1.5, fillColor = 'DimGray', pos=(-7.5,4), fillColorSpace=None,  size=20, lineColor = None)
         prime.win = window 
     elif string == 'right':
-        prime = visual.Circle(window, radius=0.06, units = 'deg', edges=50, lineWidth=1.5, fillColor = '#727272', pos=(7.5,4), fillColorSpace=None,  size=5, lineColor = None)
+        prime = visual.Circle(window, radius=0.06, units = 'deg', edges=50, lineWidth=1.5, fillColor = 'DimGray', pos=(7.5,4), fillColorSpace=None,  size=20, lineColor = None)
         prime.win = window
     else:
         prime = visual.TextStim(window, '+')
@@ -273,6 +275,8 @@ def run_condition(exp_start):
         offset_prime = core.monotonicClock.getTime()  # offset of stimulus
         for frame in range(trial['delay_frames_before']):
             stim_fix.draw()
+            myGrat1.draw()
+            myGrat2.draw()
 
             # Send pause trigger 1 sec (500 ms?) after offset
             #if frame  == 60:
@@ -376,6 +380,8 @@ def run_condition(exp_start):
         offset_task = core.monotonicClock.getTime()  # offset of stimulus
         for frame in range(trial['delay_frames_after']):
             stim_fix.draw()
+            myGrat1.draw()
+            myGrat2.draw()
             if no_key_yet == 0:
                 try:
                     key, time_key = event.getKeys(keyList=('a', 'l', 'escape'), timeStamped=True)[0]  # timestamped according to core.monotonicClock.getTime() at keypress
@@ -497,6 +503,8 @@ exp_start=core.monotonicClock.getTime()
 #1 sec of fixation cross before we start
 for frame in range(1*FRAME_RATE):
      stim_fix.draw()
+     myGrat1.draw()
+     myGrat2.draw()
      win.flip()
 
 #""" CALL FUNCTION RUNNING THE EXPERIMENTAL LOOP"""

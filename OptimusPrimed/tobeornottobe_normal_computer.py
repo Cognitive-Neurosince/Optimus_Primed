@@ -111,11 +111,11 @@ def prime_func(string, window):
 delays=(40,118)
 
 #dur_prime is the number of frames that the prime will be shown, which will be 3 frames corresponding to 0.050 seconds
-dur_prime=int(0.134*FRAME_RATE) # duration in seconds multiplied by 60 Hz and made into integer
+dur_prime=int(0.050*FRAME_RATE) # duration in seconds multiplied by 60 Hz and made into integer
 #dur_prime=int(0.15*FRAME_RATE) # this duration is used for testing the experimental setup, but it should be commented out for the actual experiment
 
 #dur_task is the number of frames that the task will be shown, which will be 18 frames corresponding to 0.3 seconds
-dur_task=int(1.5*FRAME_RATE) # duration in seconds multiplied by 60 Hz and made into integer
+dur_task=int(2.5*FRAME_RATE) # duration in seconds multiplied by 60 Hz and made into integer
 
 
 # Visual dot for check of stimulus in EEG (commented out due to fear of an additional priming effect)

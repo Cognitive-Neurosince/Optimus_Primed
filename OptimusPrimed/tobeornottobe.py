@@ -469,13 +469,13 @@ DISPLAY INTRO TEXT AND AWAIT SCANNER TRIGGER
 """
 textPos= [0, 0]                            # Position of question message
 textHeight=0.6 # height in degrees
-introText1=[u'In this experiment you will solve a simple task of matching the colour of the frame with the correct circle', # some blanks here to create line shifts
+introText1=[u'In this experiment you will solve a simple task of matching the colour of the frame with the correct circle',# some blanks here to create line shifts
 
-            u'Primes can be used to predict colours',
+            u'You will be presented a circle in the right and left corner of the screen.',
 
-            u'Press "a" key with INDEX finger on left hand if blue',
+            u'Press the "A" key with your left INDEX finger if it is the right circle that matches the frame of the color.',
 
-            u'Press "l" key with INDEX finger on right hand if red',
+            u'Press the "L" key with your right INDEX finger if it is the right cirlce that matches the frame of the color',
 
             u'',
 
